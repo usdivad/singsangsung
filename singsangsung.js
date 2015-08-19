@@ -9,7 +9,7 @@
  *        which increases by 1 each time timer is restarted.
  *
  *  ~ David Su dds2135@columbia.edu
-**/
+ **/
 
 window.onload = function() {
 
@@ -48,7 +48,7 @@ window.onload = function() {
     // HTML element references
     var imageTimerDiv = document.getElementById("imageTimer");
     var imageBessieDiv = document.getElementById("imageBessie");
-    var timerDiv = document.getElementById("timer");
+    var timerDisplayDiv = document.getElementById("timerDisplay");
     var highScoreDiv = document.getElementById("highScore");
     var currScoreDiv = document.getElementById("currScore");
 
@@ -77,7 +77,34 @@ window.onload = function() {
     }
 
     // Click actions for images
-    imageTimerDiv.onclick = function() {
+    if ("ontouchstart" in imageTimerDiv) { // touch event
+        imageTimerDiv.addEventListener("touchstart", function() {
+            timerAction();
+        });
+        imageBessieDiv.addEventListener("touchstart", function() {
+            bessieDownAction();
+        });
+        imageBessieDiv.addEventListener("touchend", function() {
+            bessieUpAction();
+        });
+    }
+    else { // mouse event
+        imageTimerDiv.addEventListener("mousedown", function() {
+            timerAction();
+        });
+        imageBessieDiv.addEventListener("mousedown", function() {
+            bessieDownAction();
+        });
+        imageBessieDiv.addEventListener("mouseup", function() {
+            bessieUpAction();
+        });
+    }
+
+
+    /** Functions **/
+
+    // Timer image actions
+    function timerAction() {
         // Sound
         if (timerOn) {
             stopSound();
@@ -88,39 +115,35 @@ window.onload = function() {
         }
         // Timer
         setTimer(timeLimitMs);
-    };
+    }
 
-    imageBessieDiv.onclick = function() {
-        // Sound
-        var index = Math.floor(Math.random() * bessieSounds.length);
-        var bessieSound = bessieSounds[index];
-        playSound(bessieSound.id);
-
-        // Score
-        if (timerOn) {
-            currScore += 1;
-            updateScoreboard();
-        }
-    };
-
-    // Right image change when pressed
-    imageBessieDiv.addEventListener("mousedown", function() {
+    // Bessie image actions
+    function bessieDownAction() {
+        //Image, score
         if (timerOn) {
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieBlueOpen);
+            currScore += 1;
+            updateScoreboard();
         }
         else {
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieGrayOpen);
         }
-    });
 
-    imageBessieDiv.addEventListener("mouseup", function() {
+        // Sound
+        var index = Math.floor(Math.random() * bessieSounds.length);
+        var bessieSound = bessieSounds[index];
+        playSound(bessieSound.id);
+    }
+
+    function bessieUpAction() {
+        //Image
         if (timerOn) {
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieBlueClosed);
         }
         else {
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieGrayClosed);
         }
-    });
+    }
 
     // Sound handlers
     function handleLoadedSound(event) {
@@ -150,8 +173,8 @@ window.onload = function() {
         timer = setTimeout(function() {
             // Timer
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieGrayClosed);
-            timerDiv.style.visibility = "hidden";
-            timerDiv.textContent = (timeLimitMs/1000).toFixed(2);
+            timerDisplayDiv.style.visibility = "hidden";
+            timerDisplayDiv.textContent = (timeLimitMs/1000).toFixed(2);
             timerOn = false;
 
             // Sound
@@ -169,14 +192,14 @@ window.onload = function() {
             clearInterval(timerDisplay);
         }
         timerDisplay = setInterval(function() {
-            var timeLeft = parseFloat(timerDiv.textContent);
+            var timeLeft = parseFloat(timerDisplayDiv.textContent);
             timeLeft -= timerDisplayInterval / 1000;
-            timerDiv.textContent = timeLeft.toFixed(2);
+            timerDisplayDiv.textContent = timeLeft.toFixed(2);
         }, timerDisplayInterval);
 
         // Reset timer vars
-        timerDiv.style.visibility = "visible";
-        timerDiv.textContent = (timeLimitMs/1000).toFixed(2);
+        timerDisplayDiv.style.visibility = "visible";
+        timerDisplayDiv.textContent = (timeLimitMs/1000).toFixed(2);
         timerOn = true;
         console.log("new timer instance");
 

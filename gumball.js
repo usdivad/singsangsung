@@ -4,7 +4,7 @@
  *  Returns either a red, green or blue gumball with given probabilities.
  *
  *  ~ David Su dds2135@columbia.edu
-**/
+ **/
 
 // For JSFiddle
 // (function() {

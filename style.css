@@ -1,7 +1,7 @@
 /**
  *  Stylesheet for both "Sing Sang Sung" and "Gumball Machine"
  *  ~ David Su dds2135@columbia.edu
-**/
+ **/
 
 /* Shared styles */
 @font-face {
@@ -10,7 +10,7 @@
 }
 
 html {
-    font-family: Lucida Grande, sans-serif;
+    font-family: Lucida, Verdana, sans-serif;
 }
 
 body {
@@ -34,6 +34,10 @@ h1 {
     border-radius: 25px;
     text-align: center;
     background-color: #f0f0f0;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 }
 
 .clickable:hover {
@@ -56,7 +60,7 @@ h1 {
     opacity: 1;
 }
 
-#timer {
+#timerDisplay {
     padding: 10px;
     visibility: hidden;
 }
