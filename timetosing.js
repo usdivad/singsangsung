@@ -22,9 +22,9 @@ window.onload = function() {
     var audioId_right1 = "right1";
     var audioSrc_right2 = audioPath + "eh2.mp3";
     var audioId_right2 = "right2";
-    var imageLeft = imagePath + "left.png";
-    var imageRight = imagePath + "right.png";
-    var imageRight2 = imagePath + "right2.png";
+    var imageLeft = imagePath + "timer.png";
+    var imageRight = imagePath + "bessieGrayClosed.png";
+    var imageRight2 = imagePath + "bessieBlueOpen.png";
 
     // HTML element references
     var imageLeftDiv = document.getElementById("imageLeft");
