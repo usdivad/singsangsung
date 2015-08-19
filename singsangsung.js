@@ -1,5 +1,5 @@
 /**
- *  Sing Sing Sing!
+ *  Sing Sang Sung!
  *
  *  Game controls and rules:
  *      - Click/touch to play.

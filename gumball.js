@@ -6,15 +6,19 @@
  *  ~ David Su dds2135@columbia.edu
 **/
 
+// For JSFiddle
+// (function() {
+
+// For web
 window.onload = function() {
     // HTML elements
     var gumballDiv = document.getElementById("gumball");
     var gumballGetterDiv = document.getElementById("gumballGetter");
 
     // Array of colors with corresponding probability distribution
-    var red = "R";
-    var green = "G";
-    var blue = "B";
+    var red = "R";     // 0.2
+    var green = "G";   // 0.3
+    var blue = "B";    // 0.5
     var colors = [red, red, green, green, green, blue, blue];
 
     // Gumball color setting
@@ -42,4 +46,6 @@ window.onload = function() {
 
         console.log(color);
     }
-}
+};
+
+// })();
