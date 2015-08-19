@@ -18,15 +18,24 @@ window.onload = function() {
     var audioSrc_timer = audioPath + "background_short.mp3";
     var audioId_timer = "timerAudio";
 
-    var audioSrc_bessie1 = audioPath + "eh1.mp3";
-    var audioId_bessie1 = "bessie1";
-    var audioSrc_bessie2 = audioPath + "eh2.mp3";
-    var audioId_bessie2 = "bessie2";
-    var audioSrc_bessie3 = audioPath + "huh.mp3";
-    var audioId_bessie3 = "bessie3";
-    var audioSrc_bessie4 = audioPath + "ooh.mp3";
-    var audioId_bessie4 = "bessie4";
-    var bessieIds = [audioId_bessie1, audioId_bessie2, audioId_bessie3, audioId_bessie4];
+    var bessieSounds = [
+        {
+            src: audioPath + "eh1.mp3",
+            id: "bessie1"
+        },
+        {
+            src: audioPath + "eh2.mp3",
+            id: "bessie2"
+        },
+        {
+            src: audioPath + "huh.mp3",
+            id: "bessie3"
+        },
+        {
+            src: audioPath + "ooh.mp3",
+            id: "bessie4"
+        }
+    ];
 
     // Image assets
     var imagePath = "./assets/images/";
@@ -58,14 +67,14 @@ window.onload = function() {
     var currScore = 0;
     var penalty = 0;
 
-    // Set up CreateJS Sound object
+    // Set up CreateJS Sound object and registrations
     createjs.Sound.alternateExtensions = ["ogg"];
     createjs.Sound.addEventListener("fileload", createjs.proxy(handleLoadedSound, this));
     createjs.Sound.registerSound(audioSrc_timer, audioId_timer);
-    createjs.Sound.registerSound(audioSrc_bessie1, audioId_bessie1);
-    createjs.Sound.registerSound(audioSrc_bessie2, audioId_bessie2);
-    createjs.Sound.registerSound(audioSrc_bessie3, audioId_bessie3);
-    createjs.Sound.registerSound(audioSrc_bessie4, audioId_bessie4);
+    for (var i=0; i<bessieSounds.length; i++) {
+        var bessieSound = bessieSounds[i];
+        createjs.Sound.registerSound(bessieSound.src, bessieSound.id);
+    }
 
     // Click actions for images
     imageTimerDiv.onclick = function() {
@@ -83,9 +92,9 @@ window.onload = function() {
 
     imageBessieDiv.onclick = function() {
         // Sound
-        var index = Math.floor(Math.random() * bessieIds.length);
-        var bessieId = bessieIds[index];
-        playSound(bessieId);
+        var index = Math.floor(Math.random() * bessieSounds.length);
+        var bessieSound = bessieSounds[index];
+        playSound(bessieSound.id);
 
         // Score
         if (timerOn) {
