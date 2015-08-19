@@ -1,0 +1,77 @@
+/**
+ *  Stylesheet for both "Time to Sing" and "Gumball Machine" 
+ *  ~ David Su dds2135@columbia.edu
+**/
+
+/* Shared styles */
+html {
+    font-family: Verdana, sans-serif;
+}
+
+body {
+    background-color: #dddddd;
+    text-align: center
+}
+
+h1 {
+    text-align: center;
+}
+
+#content {
+    width: 75%;
+    height: 100%;
+    margin: 25px auto;
+    padding: 20px;
+    border-radius: 25px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.clickable:hover {
+    cursor: pointer;
+}
+
+/* Time to Sing styles */
+.imageContainer {
+    display: inline-block;
+    width: 125px;
+    height: 125px;
+    opacity: 0.5;
+}
+
+.imageContainer:hover {
+    opacity: 0.75;
+}
+
+.imageContainer:active {
+    opacity: 1;
+}
+
+#timer {
+    padding: 5px;
+    visibility: hidden;
+}
+
+/* Gumball styles */
+#gumballGetter {
+    width: 50%;
+    max-width: 300px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: black;
+    margin: auto;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+#gumballGetter:active {
+    color: white;
+}
+
+#gumball {
+    width: 250px;
+    height: 250px;
+    margin: 25px auto;
+    border-radius: 50%;
+    background: #000000;
+}
