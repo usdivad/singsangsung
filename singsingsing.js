@@ -1,5 +1,5 @@
 /**
- *  Time to Sing!
+ *  Sing Sing Sing!
  *
  *  Game controls and rules:
  *      - Click/touch to play.

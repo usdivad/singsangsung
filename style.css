@@ -1,5 +1,5 @@
 /**
- *  Stylesheet for both "Time to Sing" and "Gumball Machine"
+ *  Stylesheet for both "Sing Sing Sing" and "Gumball Machine"
  *  ~ David Su dds2135@columbia.edu
 **/
 
@@ -31,7 +31,7 @@ h1 {
     cursor: pointer;
 }
 
-/* Time to Sing styles */
+/* Sing Sing Sing styles */
 .imageContainer {
     display: inline-block;
     width: 125px;
