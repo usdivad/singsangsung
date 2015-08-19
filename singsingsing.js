@@ -13,19 +13,26 @@
 
 window.onload = function() {
 
-    // Assets references
+    // Audio asset references
     var audioPath = "./assets/audio/";
-    var imagePath = "./assets/images/";
     var audioSrc_timer = audioPath + "background_short.mp3";
-    var audioId_timer = "left";
+    var audioId_timer = "timerAudio";
+
     var audioSrc_bessie1 = audioPath + "eh1.mp3";
-    var audioId_bessie1 = "right1";
+    var audioId_bessie1 = "bessie1";
     var audioSrc_bessie2 = audioPath + "eh2.mp3";
-    var audioId_bessie2 = "right2";
+    var audioId_bessie2 = "bessie2";
+    var audioSrc_bessie3 = audioPath + "huh.mp3";
+    var audioId_bessie3 = "bessie3";
+    var audioSrc_bessie4 = audioPath + "ooh.mp3";
+    var audioId_bessie4 = "bessie4";
+    var bessieIds = [audioId_bessie1, audioId_bessie2, audioId_bessie3, audioId_bessie4];
+
+    // Image assets
+    var imagePath = "./assets/images/";
     var imageTimer = imagePath + "timer.png";
     var imageBessieGrayClosed = imagePath + "bessieGrayClosed.png";
     var imageBessieBlueClosed = imagePath + "bessieBlueClosed.png";
-    
     var imageBessieGrayOpen = imagePath + "bessieGrayOpen.png";
     var imageBessieBlueOpen = imagePath + "bessieBlueOpen.png";
 
@@ -57,6 +64,8 @@ window.onload = function() {
     createjs.Sound.registerSound(audioSrc_timer, audioId_timer);
     createjs.Sound.registerSound(audioSrc_bessie1, audioId_bessie1);
     createjs.Sound.registerSound(audioSrc_bessie2, audioId_bessie2);
+    createjs.Sound.registerSound(audioSrc_bessie3, audioId_bessie3);
+    createjs.Sound.registerSound(audioSrc_bessie4, audioId_bessie4);
 
     // Click actions for images
     imageTimerDiv.onclick = function() {
@@ -74,13 +83,9 @@ window.onload = function() {
 
     imageBessieDiv.onclick = function() {
         // Sound
-        var dice = Math.random();
-        if (dice > 0.5) {
-            playSound(audioId_bessie1);
-        }
-        else {
-            playSound(audioId_bessie2);
-        }
+        var index = Math.floor(Math.random() * bessieIds.length);
+        var bessieId = bessieIds[index];
+        playSound(bessieId);
 
         // Score
         if (timerOn) {
