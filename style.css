@@ -73,6 +73,10 @@ h1 {
     visibility: hidden;
 }
 
+#canvas {
+    visibility: hidden;
+}
+
 /* Gumball styles */
 #gumballGetter {
     width: 50%;

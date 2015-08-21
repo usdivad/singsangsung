@@ -60,7 +60,20 @@ window.onload = function() {
     var timer, timerDisplay;
     var timerOn = false;
     var timeLimitMs = 3000;
-    var timerDisplayInterval = 10;
+    var timerDisplayInterval = 10;    
+    
+    // Timer canvas element
+    var timerCanvas = document.getElementById("timerCanvas");
+    timerCanvas.width = 125;
+    timerCanvas.height = timerCanvas.width;
+    console.log("width: " + timerCanvas.width);
+    
+    var ctx = timerCanvas.getContext("2d");
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = "white";
+    ctx.fillStyle = "white";
+    ctx.clearRect(0, 0, timerCanvas.width, timerCanvas.height);
+    ctx.save();
 
     // Scoreboard for game
     var highScore = 0;
@@ -115,6 +128,11 @@ window.onload = function() {
         }
         // Timer
         setTimer(timeLimitMs);
+
+        // Clear timer canvas
+        ctx.clearRect(0, 0, timerCanvas.width, timerCanvas.height);
+        console.log("clear canvas");
+
     }
 
     // Bessie image actions
@@ -147,7 +165,7 @@ window.onload = function() {
 
     // Sound handlers
     function handleLoadedSound(event) {
-        console.log(audioId_timer + " loaded");
+        console.log(event.id + " loaded");
     }
 
     function playSound(id) {
@@ -175,7 +193,10 @@ window.onload = function() {
             imageBessieDiv.style.backgroundImage = toUrlProperty(imageBessieGrayClosed);
             timerDisplayDiv.style.visibility = "hidden";
             timerDisplayDiv.textContent = (timeLimitMs/1000).toFixed(2);
+            clearInterval(timerDisplay);
             timerOn = false;
+            timerCanvas.style.visibility = "hidden";
+            // requestAnimationFrame(moveClockHand);
 
             // Sound
             stopSound();
@@ -193,18 +214,21 @@ window.onload = function() {
         }
         timerDisplay = setInterval(function() {
             var timeLeft = parseFloat(timerDisplayDiv.textContent);
+            var timeLeftMs = timeLeft * 1000;
             timeLeft -= timerDisplayInterval / 1000;
             timerDisplayDiv.textContent = timeLeft.toFixed(2);
+            moveClockHand(timeLeftMs, timeLimitMs);
         }, timerDisplayInterval);
 
         // Reset timer vars
         timerDisplayDiv.style.visibility = "visible";
+        timerCanvas.style.visibility = "visible";
         timerDisplayDiv.textContent = (timeLimitMs/1000).toFixed(2);
         timerOn = true;
         console.log("new timer instance");
 
         // Update score and penalty
-        currScoreDiv.style.visibility = "visible"
+        currScoreDiv.style.visibility = "visible";
         if (currScore >= penalty) {
             currScore -= penalty;
         }
@@ -213,6 +237,28 @@ window.onload = function() {
         }
         penalty++;
         updateScoreboard();
+    }
+
+    // Move the clock hand based on time left and overall time limit
+    function moveClockHand(timeLeft, timeLimit) {
+        // var timeLeft = parseFloat(timerDisplayDiv.textContent) * 1000;
+        // var timeLimit = timeLimitMs;
+        timeLeft = timeLeft - 270; // latency
+        var angle = (timeLeft/timeLimit) * Math.PI * 2;
+        console.log(timeLeft + "ms: " + timeLeft*100/timeLimit + "%: " + angle*180/Math.PI + "°");
+        ctx.save();
+        ctx.translate(timerCanvas.width/2,timerCanvas.height/2);
+        ctx.rotate(-Math.PI/2);
+        ctx.rotate(angle);
+        ctx.clearRect(0, 0, timerCanvas.width, timerCanvas.height);
+
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(60, 0);
+        ctx.stroke();
+        ctx.restore();
+
+        // requestAnimationFrame(moveClockHand);
     }
 
     // Update the scoreboard with current and high scores
