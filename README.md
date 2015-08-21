@@ -7,7 +7,7 @@ Play it [here](http://usdivad.com/singsangsung).
 ![Sing Sang Sung](https://raw.githubusercontent.com/usdivad/singsangsung/master/screenshot_8-19.png)
 
 ## Gumball Machine
-[JSFiddle demo](https://jsfiddle.net/mmz4tf0r/)
+[JSFiddle demo](https://jsfiddle.net/9248gvpL/)
 
 
 All assets by David Su, except for Life Is Goofy font by Louis Fineberg.
