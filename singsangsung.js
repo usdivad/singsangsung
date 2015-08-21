@@ -66,7 +66,7 @@ window.onload = function() {
     var timerCanvas = document.getElementById("timerCanvas");
     timerCanvas.width = 125;
     timerCanvas.height = timerCanvas.width;
-    console.log("width: " + timerCanvas.width);
+    // // console.log("width: " + timerCanvas.width);
     
     var ctx = timerCanvas.getContext("2d");
     ctx.lineWidth = 2;
@@ -131,7 +131,7 @@ window.onload = function() {
 
         // Clear timer canvas
         ctx.clearRect(0, 0, timerCanvas.width, timerCanvas.height);
-        console.log("clear canvas");
+        // console.log("clear canvas");
 
     }
 
@@ -179,7 +179,7 @@ window.onload = function() {
 
     function stopSound() {
         createjs.Sound.stop();
-        console.log("stop sound");
+        // console.log("stop sound");
     }
 
     // Re-instantiates timer
@@ -225,7 +225,7 @@ window.onload = function() {
         timerCanvas.style.visibility = "visible";
         timerDisplayDiv.textContent = (timeLimitMs/1000).toFixed(2);
         timerOn = true;
-        console.log("new timer instance");
+        // console.log("new timer instance");
 
         // Update score and penalty
         currScoreDiv.style.visibility = "visible";
@@ -245,7 +245,7 @@ window.onload = function() {
         // var timeLimit = timeLimitMs;
         timeLeft = timeLeft - 270; // latency
         var angle = (timeLeft/timeLimit) * Math.PI * 2;
-        console.log(timeLeft + "ms: " + timeLeft*100/timeLimit + "%: " + angle*180/Math.PI + "°");
+        // console.log(timeLeft + "ms: " + timeLeft*100/timeLimit + "%: " + angle*180/Math.PI + "°");
         ctx.save();
         ctx.translate(timerCanvas.width/2,timerCanvas.height/2);
         ctx.rotate(-Math.PI/2);
@@ -268,7 +268,7 @@ window.onload = function() {
         }
         currScoreDiv.textContent = "Current Score: " + currScore;
         highScoreDiv.textContent = "High Score: " + highScore;
-        console.log("penalty: " + penalty);
+        // console.log("penalty: " + penalty);
     }
 
     // Helper function to more easily set CSS background-image URLs
