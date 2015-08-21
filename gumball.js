@@ -19,7 +19,7 @@ window.onload = function() {
     var red = "R";     // 0.2
     var green = "G";   // 0.3
     var blue = "B";    // 0.5
-    var colors = [red, red, green, green, green, blue, blue];
+    var colors = [red, red, green, green, green, blue, blue, blue, blue];
 
     // Gumball color setting
     gumballGetterDiv.onclick = setGumballColor;
